@@ -521,7 +521,28 @@ static void DoExercise36()
     bool doingExercise36 = true;
     while (doingExercise36)
     {
-        Console.WriteLine("This is meant to represent Exercise 36.");
+        ArrayList originalNumbers = new ArrayList() { 12, 11, 10, 9, 8 };
+        ArrayList originalStrings = new ArrayList() { 
+            "Drummers Drumming",
+            "Pipers Piping",
+            "Lords a - Leaping",
+            "Ladies Dancing",
+            "Maids a - Milking"
+        };
+
+        Console.WriteLine("I have two arrays - one of numbers and one of strings.");
+        Console.WriteLine("");
+        Console.WriteLine("Original Numbers Array: { 12, 11, 10, 9, 8 }");
+        Console.WriteLine("Original Strings Array: { \"Drummers Drumming\", \"Pipers Piping\", \"Lords a - Leaping\", ");
+        Console.WriteLine(String.Format("{0,26}{1,0}", "", "\"Ladies Dancing\", \"Maids a - Milking\" }")); 
+        Console.WriteLine("");
+        Console.WriteLine("I'm now going to combine these two arrays to produce a popular holiday song!");
+        Console.WriteLine("");
+        Console.WriteLine("Output: ");
+        for (int i = 0; i < 5; i++)
+        {
+            Console.WriteLine($"\t{originalNumbers[i]} {originalStrings[i]}");
+        }
         Console.WriteLine("");
         Console.WriteLine("Press Enter to Continue.");
         Console.ReadLine();
@@ -542,7 +563,56 @@ static void DoExercise37()
     bool doingExercise37 = true;
     while (doingExercise37)
     {
-        Console.WriteLine("This is meant to represent Exercise 37.");
+        List<int> numbers = new List<int>();
+        bool addingNumbersToList = true;
+        while (addingNumbersToList)
+        {
+            if (numbers.Count <= 4)
+            {
+                Console.Write("Enter a number for us to add to our list: ");
+                string userEnteredNumber = Console.ReadLine();
+                bool isAValidNumber = int.TryParse(userEnteredNumber, out int userNumber);
+                if (isAValidNumber)
+                {
+                    if ((userNumber < 1291 && userNumber > -1291))
+                    {
+                        numbers.Add(userNumber);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Sorry, that number is too large to use for this exercise. Let's try again.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Sorry, that doesnt appear to be a number. Please try again.");
+                }
+            }
+            else
+            {
+                addingNumbersToList = false;
+            }
+        }
+        Console.WriteLine("");
+        Console.Write("The numbers you entered are: { ");
+
+        for (int i = 0; i < numbers.Count - 1; i++)
+        {
+            Console.Write($"{numbers[i]}, ");
+
+        }
+        for (int i = numbers.Count - 1; i < numbers.Count; i++)
+        {
+            Console.Write($"{numbers[i]} ");
+
+        }
+        Console.Write("}");
+        Console.WriteLine("");
+
+        int sumOfNumbers = numbers.Sum();
+        Console.WriteLine($"The sum of those numbers is {sumOfNumbers}.");
+        numbers.Clear();
+
         Console.WriteLine("");
         Console.WriteLine("Press Enter to Continue.");
         Console.ReadLine();
@@ -690,6 +760,34 @@ static bool RunProgramAgainPrompt()
         {
             Console.WriteLine("");
             Console.WriteLine("Sorry, I didn't understand that response. Please try again.");
+            Console.WriteLine("");
+        }
+    }
+    return false;
+}
+static bool isAValidNumber(string userEntry)
+{
+    bool checkingThisNumber = true;
+    while (checkingThisNumber)
+    {
+        bool isANumber = int.TryParse(userEntry, out int number);
+        if (isANumber)
+        {
+            if (number > 1290 || number < -1290)
+            {
+                Console.WriteLine("");
+                Console.WriteLine("Sorry, that number is too large for this exercise. Let's try again with a different number.");
+                Console.WriteLine("");
+            }
+            else
+            {
+                return true;
+            }
+        }
+        else
+        {
+            Console.WriteLine("");
+            Console.WriteLine("Sorry, that doesn appear to be a whole number. Let's try again.");
             Console.WriteLine("");
         }
     }
