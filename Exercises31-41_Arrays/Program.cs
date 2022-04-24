@@ -633,7 +633,56 @@ static void DoExercise38()
     bool doingExercise38 = true;
     while (doingExercise38)
     {
-        Console.WriteLine("This is meant to represent Exercise 38.");
+        List<int> numbers = new List<int>();
+        bool addingNumbersToList = true;
+        while (addingNumbersToList)
+        {
+            if (numbers.Count <= 4)
+            {
+                Console.Write("Enter a number for us to add to our list: ");
+                string userEnteredNumber = Console.ReadLine();
+                bool isAValidNumber = int.TryParse(userEnteredNumber, out int userNumber);
+                if (isAValidNumber)
+                {
+                    if ((userNumber < 1291 && userNumber > -1291))
+                    {
+                        numbers.Add(userNumber);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Sorry, that number is too large to use for this exercise. Let's try again.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Sorry, that doesnt appear to be a number. Please try again.");
+                }
+            }
+            else
+            {
+                addingNumbersToList = false;
+            }
+        }
+        Console.WriteLine("");
+        Console.Write("The numbers you entered are: { ");
+
+        for (int i = 0; i < numbers.Count - 1; i++)
+        {
+            Console.Write($"{numbers[i]}, ");
+
+        }
+        for (int i = numbers.Count - 1; i < numbers.Count; i++)
+        {
+            Console.Write($"{numbers[i]} ");
+
+        }
+        Console.Write("}");
+        Console.WriteLine("");
+
+        double averageOfNumbers = numbers.Average();
+        Console.WriteLine($"The average of those numbers is {averageOfNumbers}.");
+        numbers.Clear();
+
         Console.WriteLine("");
         Console.WriteLine("Press Enter to Continue.");
         Console.ReadLine();
@@ -655,7 +704,69 @@ static void DoExercise39()
     bool doingExercise39 = true;
     while (doingExercise39)
     {
-        Console.WriteLine("This is meant to represent Exercise 39.");
+        List<int> numbers = new List<int>();
+        bool addingNumbersToList = true;
+        while (addingNumbersToList)
+        {
+            if (numbers.Count <= 4)
+            {
+                Console.Write("Enter a number for us to add to our list: ");
+                string userEnteredNumber = Console.ReadLine();
+                bool isAValidNumber = int.TryParse(userEnteredNumber, out int userNumber);
+                if (isAValidNumber)
+                {
+                    if ((userNumber < 1291 && userNumber > -1291))
+                    {
+                        numbers.Add(userNumber);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Sorry, that number is too large to use for this exercise. Let's try again.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Sorry, that doesnt appear to be a number. Please try again.");
+                }
+            }
+            else
+            {
+                addingNumbersToList = false;
+            }
+        }
+        Console.WriteLine("");
+        Console.Write("The numbers you entered are: { ");
+
+        for (int i = 0; i < numbers.Count - 1; i++)
+        {
+            Console.Write($"{numbers[i]}, ");
+
+        }
+        for (int i = numbers.Count - 1; i < numbers.Count; i++)
+        {
+            Console.Write($"{numbers[i]} ");
+
+        }
+        Console.Write("}");
+        Console.WriteLine("");
+
+        numbers.Sort();
+        Console.Write("Those numbers sorted are: { ");
+
+        for (int i = 0; i < numbers.Count - 1; i++)
+        {
+            Console.Write($"{numbers[i]}, ");
+
+        }
+        for (int i = numbers.Count - 1; i < numbers.Count; i++)
+        {
+            Console.Write($"{numbers[i]} ");
+
+        }
+        Console.Write("}");
+        Console.WriteLine("");
+        numbers.Clear();
+
         Console.WriteLine("");
         Console.WriteLine("Press Enter to Continue.");
         Console.ReadLine();
@@ -760,34 +871,6 @@ static bool RunProgramAgainPrompt()
         {
             Console.WriteLine("");
             Console.WriteLine("Sorry, I didn't understand that response. Please try again.");
-            Console.WriteLine("");
-        }
-    }
-    return false;
-}
-static bool isAValidNumber(string userEntry)
-{
-    bool checkingThisNumber = true;
-    while (checkingThisNumber)
-    {
-        bool isANumber = int.TryParse(userEntry, out int number);
-        if (isANumber)
-        {
-            if (number > 1290 || number < -1290)
-            {
-                Console.WriteLine("");
-                Console.WriteLine("Sorry, that number is too large for this exercise. Let's try again with a different number.");
-                Console.WriteLine("");
-            }
-            else
-            {
-                return true;
-            }
-        }
-        else
-        {
-            Console.WriteLine("");
-            Console.WriteLine("Sorry, that doesn appear to be a whole number. Let's try again.");
             Console.WriteLine("");
         }
     }
