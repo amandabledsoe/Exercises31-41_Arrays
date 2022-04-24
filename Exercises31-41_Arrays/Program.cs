@@ -1,4 +1,6 @@
-﻿bool runningProgram = true;
+﻿using System.Collections;
+
+bool runningProgram = true;
 int exerciseNumber;
 
 Introduction();
@@ -163,7 +165,34 @@ static void DoExercise31()
     bool doingExercise31 = true;
     while (doingExercise31)
     {
-        Console.WriteLine("This is meant to represent Exercise 31.");
+        int[] thisArray = new int[] {2,8,0,24,51};
+        Console.WriteLine("Enter a number from 1 to 5 and I will show you what number exists in the original array at that index.");
+        Console.WriteLine("");
+        Console.Write("Your Entry: ");
+        string userNumber = Console.ReadLine();
+        Console.WriteLine("");
+        bool isANumber = int.TryParse(userNumber, out int indexNumber);
+        if(isANumber)
+        {
+            if(indexNumber < 1 || indexNumber > 5)
+            {
+                Console.WriteLine("Sorry, that number appears to be out of range. Let's try again.");
+
+            }
+            else
+            {
+                Console.WriteLine("The original array was: {2, 8, 0, 24, 51}");
+                Console.WriteLine("");
+                Console.WriteLine($"Your index number was {indexNumber}, which means we want the number in position #{indexNumber} on the list.");
+                Console.WriteLine($"The computer begins at zero, so it believes your index number is {indexNumber-1}.");
+                Console.WriteLine($"Therefore, the number at the index of {indexNumber-1} and position #{indexNumber} is {thisArray[indexNumber-1]}.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("");
+            Console.WriteLine("Sorry, that doesnt appear to be a number. Let's try again.");
+        }
         Console.WriteLine("");
         Console.WriteLine("Press Enter to Continue.");
         Console.ReadLine();
@@ -186,7 +215,34 @@ static void DoExercise32()
     bool doingExercise32 = true;
     while (doingExercise32)
     {
-        Console.WriteLine("This is meant to represent Exercise 32.");
+        int[] thisArray = new int[] { 2, 8, 0, 24, 51 };
+        Console.WriteLine("Enter a number and I will tell you if that number is in our original list.");
+        Console.WriteLine("");
+        Console.Write("Your Entry: ");
+        string userNumber = Console.ReadLine();
+        Console.WriteLine("");
+        bool isANumber = int.TryParse(userNumber, out int numberToFind);
+        if (isANumber)
+        {
+            if (thisArray.Contains(numberToFind))
+            {
+                Console.WriteLine("The original array was: {2, 8, 0, 24, 51}");
+                Console.WriteLine("");
+                Console.WriteLine($"Your number IS in the original array, and it exists at index {Array.IndexOf(thisArray, numberToFind)}.");
+            }
+            else
+            {
+                Console.WriteLine("The original array was: {2, 8, 0, 24, 51}");
+                Console.WriteLine("");
+                Console.WriteLine($"Your number IS NOT in the original array.");
+
+            }
+        }
+        else
+        {
+            Console.WriteLine("");
+            Console.WriteLine("Sorry, that doesnt appear to be a number. Let's try again.");
+        }
         Console.WriteLine("");
         Console.WriteLine("Press Enter to Continue.");
         Console.ReadLine();
@@ -198,7 +254,7 @@ static void DoExercise33()
 {
     Console.WriteLine("EXERCISE 33:");
     Console.WriteLine("------------------------------");
-    Console.WriteLine("Create an array of size 5 and fill it with the following numbers: 2, 8, 0, 24, 51. ");
+    Console.WriteLine("Create an array of size 5 and fill it with the following numbers: 2, 8, 0, 24, 51.");
     Console.WriteLine("Let the user change the array by specifying an index and a replacement number.");
     Console.WriteLine("");
     Console.WriteLine("Press Enter to begin this exercise.");
@@ -208,7 +264,63 @@ static void DoExercise33()
     bool doingExercise33 = true;
     while (doingExercise33)
     {
-        Console.WriteLine("This is meant to represent Exercise 33.");
+        ArrayList thisArray = new ArrayList {2,8,0,24,51};
+        bool gettingTheseNumbers = true;
+        while (gettingTheseNumbers)
+        {
+            Console.WriteLine("Enter an index number from 0 - 4 and anumber to put in it. I will replace what was in the original array with your new number.");
+            Console.WriteLine("");
+            Console.Write("Enter the index you wish to change: ");
+            string userIndexChoice = Console.ReadLine();
+            Console.WriteLine("");
+            bool isANumber = int.TryParse(userIndexChoice, out int userIndex);
+            if (isANumber)
+            {
+                if (userIndex >= 0 && userIndex <= 4)
+                {
+                    Console.Write("Enter the number you wish to add as a replacement: ");
+                    string userNumberToAdd = Console.ReadLine();
+                    Console.WriteLine("");
+                    bool isAnotherNumber = int.TryParse(userNumberToAdd, out int userNum);
+                    if (isAnotherNumber)
+                    {
+                        thisArray.Remove(thisArray[userIndex]);
+                        thisArray.Insert(userIndex, userNum);
+                        Console.WriteLine("The original array was: { 2, 8, 0, 24, 51 }");
+                        Console.Write("The new array with your number added at your specified index is: { ");
+                        for (int i = 0; i < thisArray.Count-1; i++)
+                        {
+                            Console.Write($"{thisArray[i]}, ");
+
+                        }
+                        for (int i = thisArray.Count-1; i < thisArray.Count; i++)
+                        {
+                            Console.Write($"{thisArray[i]} ");
+
+                        }
+                        Console.Write("}");
+                        Console.WriteLine("");
+                    }
+                    gettingTheseNumbers = false;
+                }
+                else
+                {
+                    Console.WriteLine("Sorry, that number is outside of our specified range. Let's try again.");
+                    Console.WriteLine("");
+                    Console.WriteLine("Press Enter to Continue.");
+                    Console.ReadLine();
+                    Console.Clear();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Sorry, that doesnt appear to be a number. Let's try again.");
+                Console.WriteLine("");
+                Console.WriteLine("Press Enter to Continue.");
+                Console.ReadLine();
+                Console.Clear();
+            }
+        }
         Console.WriteLine("");
         Console.WriteLine("Press Enter to Continue.");
         Console.ReadLine();
@@ -232,7 +344,67 @@ static void DoExercise34()
     bool doingExercise34 = true;
     while (doingExercise34)
     {
-        Console.WriteLine("This is meant to represent Exercise 34.");
+        bool halvingAndDoubling = true;
+        while (halvingAndDoubling)
+        {
+            ArrayList thisArray = new ArrayList() { 16, 32, 64, 128, 256 };
+            Console.WriteLine("Enter a command of either \"half\" or \"double\" andI will display the respective result of our original list.");
+            Console.Write("Your Choice: ");
+            string userChoice = Console.ReadLine().ToLower();
+            Console.WriteLine("");
+            if (userChoice == "half")
+            {
+                ArrayList halfArray = new ArrayList();
+                foreach (int item in thisArray)
+                {
+                    int half = item / 2;
+                    halfArray.Add(half);
+                }
+                Console.WriteLine("The original array was: { 16, 32, 64, 128, 256 }");
+                Console.Write("The new array with those values halved is: { ");
+                for (int i = 0; i < halfArray.Count - 1; i++)
+                {
+                    Console.Write($"{halfArray[i]}, ");
+
+                }
+                for (int i = halfArray.Count - 1; i < halfArray.Count; i++)
+                {
+                    Console.Write($"{halfArray[i]} ");
+
+                }
+                Console.Write("}");
+                Console.WriteLine("");
+                halvingAndDoubling = false;
+            }
+            else if (userChoice == "double")
+            {
+                ArrayList doubleArray = new ArrayList();
+                foreach (int item in thisArray)
+                {
+                    int doubleNum = item * 2;
+                    doubleArray.Add(doubleNum);
+                }
+                Console.WriteLine("The original array was: { 16, 32, 64, 128, 256 }");
+                Console.Write("The new array with those values doubled is: { ");
+                for (int i = 0; i < doubleArray.Count - 1; i++)
+                {
+                    Console.Write($"{doubleArray[i]}, ");
+
+                }
+                for (int i = doubleArray.Count - 1; i < doubleArray.Count; i++)
+                {
+                    Console.Write($"{doubleArray[i]} ");
+
+                }
+                Console.Write("}");
+                Console.WriteLine("");
+                halvingAndDoubling = false;
+            }
+            else
+            {
+                Console.WriteLine("Sorry, that appears to be neither \"half\" nor \"double\". Let's try again.");
+            }
+        }
         Console.WriteLine("");
         Console.WriteLine("Press Enter to Continue.");
         Console.ReadLine();
@@ -257,7 +429,76 @@ static void DoExercise35()
     bool doingExercise35 = true;
     while (doingExercise35)
     {
-        Console.WriteLine("This is meant to represent Exercise 35.");
+        ArrayList originalArray = new ArrayList { 
+            "cow", 
+            "elephant", 
+            "jaguar", 
+            "horse", 
+            "crow" };
+        bool gettingFirstNumber = true;
+        while (gettingFirstNumber)
+        {
+            Console.WriteLine("Enter two numbers, which will represent two indices. I will use those values to return a " +
+                "corresponding word and letter index from an original list of words.");
+            Console.WriteLine("");
+            Console.Write("Enter the index of the word you wish to display: ");
+            string wordIndex = Console.ReadLine();
+            Console.WriteLine("");
+            bool isANumber = int.TryParse(wordIndex, out int trueWordIndex);
+            if (isANumber)
+            {
+                if (trueWordIndex <= originalArray.Count-1 && trueWordIndex >= 0)
+                {
+                    string wordToDisplay = originalArray[trueWordIndex].ToString();
+                    bool gettingSecondNumber = true;
+                    while(gettingSecondNumber)
+                    {
+                        Console.Write("Enter the index of the letter you wish to display: ");
+                        string userNumberToAdd = Console.ReadLine();
+                        Console.WriteLine("");
+                        bool isAnotherNumber = int.TryParse(userNumberToAdd, out int userNum);
+                        if (isAnotherNumber)
+                        {
+                            if (userNum - 1 < wordToDisplay.Length-1 && userNum - 1 >= 0)
+                            {
+                                char letterToDisplay = wordToDisplay[userNum];
+                                Console.WriteLine("The original array is: \n{\"cow\", \"elephant\", \"jaguar\", \"horse\", \"crow\"}");
+                                Console.WriteLine("");
+                                Console.WriteLine($"The word at index {trueWordIndex} (or position #{trueWordIndex + 1}) in the original array is {wordToDisplay}.");
+                                Console.WriteLine($"The letter at index {userNum} (or positon #{userNum + 1}) in the word is {letterToDisplay}.");
+                                gettingSecondNumber = false;
+                                gettingFirstNumber = false;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Looks like that number is bigger than the number of letters in the word. Let's try again.");
+                                Console.WriteLine("");
+                                Console.WriteLine("Press Enter to Continue.");
+                                Console.ReadLine();
+                                Console.Clear();
+                                gettingSecondNumber = false;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Sorry, our list of words doesnt have that many words in it. Let's try again.");
+                    Console.WriteLine("");
+                    Console.WriteLine("Press Enter to Continue.");
+                    Console.ReadLine();
+                    Console.Clear();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Sorry, that doesnt appear to be a number. Let's try again.");
+                Console.WriteLine("");
+                Console.WriteLine("Press Enter to Continue.");
+                Console.ReadLine();
+                Console.Clear();
+            }
+        }
         Console.WriteLine("");
         Console.WriteLine("Press Enter to Continue.");
         Console.ReadLine();
