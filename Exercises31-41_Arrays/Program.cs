@@ -787,7 +787,42 @@ static void DoExercise40()
     bool doingExercise40 = true;
     while (doingExercise40)
     {
-        Console.WriteLine("This is meant to represent Exercise 40.");
+        List<int> numbers = new List<int>();
+        bool addingNumbersToList = true;
+        while (addingNumbersToList)
+        {
+            if (numbers.Count <= 4)
+            {
+                Console.Write("Enter a number for us to add to our list: ");
+                string userEnteredNumber = Console.ReadLine();
+                bool isAValidNumber = int.TryParse(userEnteredNumber, out int userNumber);
+                if (isAValidNumber)
+                {
+                    if ((userNumber < 1291 && userNumber > -1291))
+                    {
+                        numbers.Add(userNumber);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Sorry, that number is too large to use for this exercise. Let's try again.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Sorry, that doesnt appear to be a number. Please try again.");
+                }
+            }
+            else
+            {
+                addingNumbersToList = false;
+            }
+        }
+        Console.WriteLine("");
+        numbers.Sort();
+        //since we know the list count is odd, we can just get the middle element
+        int medianValue = numbers.Count / 2;
+        Console.WriteLine($"The median of the entered numbers is {numbers[medianValue]}.");
+
         Console.WriteLine("");
         Console.WriteLine("Press Enter to Continue.");
         Console.ReadLine();
@@ -808,7 +843,41 @@ static void DoExercise41()
     bool doingExercise41 = true;
     while (doingExercise41)
     {
-        Console.WriteLine("This is meant to represent Exercise 41.");
+        List<int> numbers = new List<int>();
+        bool addingNumbersToList = true;
+        while (addingNumbersToList)
+        {
+            if (numbers.Count <= 1)
+            {
+                Console.Write("Enter a number for us to add to our list: ");
+                string userEnteredNumber = Console.ReadLine();
+                bool isAValidNumber = int.TryParse(userEnteredNumber, out int userNumber);
+                if (isAValidNumber)
+                {
+                    if ((userNumber < 1291 && userNumber > -1291))
+                    {
+                        numbers.Add(userNumber);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Sorry, that number is too large to use for this exercise. Let's try again.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Sorry, that doesnt appear to be a number. Please try again.");
+                }
+            }
+            else
+            {
+                addingNumbersToList = false;
+            }
+        }
+        Console.WriteLine("");
+        double numberDividedByTwo = numbers.Sum() / 2;
+        Console.WriteLine($"The quotient of the sum of the values in the list \n" +
+            $"divided by the number of items in the list \n" +
+            $"is {numberDividedByTwo}.");
         Console.WriteLine("");
         Console.WriteLine("Press Enter to Continue.");
         Console.ReadLine();
